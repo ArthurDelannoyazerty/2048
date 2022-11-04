@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-SIZE = 400
+SIZE = 200
 GRID_LEN = 4
 GRID_PADDING = 10
 
