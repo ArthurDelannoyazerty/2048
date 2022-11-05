@@ -1,40 +1,18 @@
-from tkinter import Frame, Label, CENTER
+from tkinter import Canvas
 import constants as c
 from grid import Grid
 
-class ViewGrid(Frame):
+class ViewGrid(Canvas):
     
-    def __init__(self, grid):
+    def __init__(self, grid, window):
         self.cell_grid = grid
-        Frame.__init__(self)
-        
-        self.grid()
-        self.master.title('2048')
-        
-        self.init_grid(grid)
-        self.master.mainloop()
+        width  = c.WIDTH_GRID_PX
+        height = c.HEIGHT_GRID_PX
+        Canvas.__init__(self, window, width = width, height = height, bg=c.BACKGROUND_COLOR_GAME, borderwidth=1, highlightthickness=0)
+        self.update_grid(grid)
+        self.pack()
     
-    def init_grid(self, cell_grid):
-        background = Frame(self, 
-                           bg=c.BACKGROUND_COLOR_GAME)
-        background.grid()
-        
-        
-        for i in range(cell_grid.size):
-            for j in range(cell_grid.size):
-                cell = Frame(background,
-                             bg=c.BACKGROUND_COLOR_CELL_EMPTY)
-                cell.grid(row=i,
-                          column=j,
-                          padx=c.GRID_PADDING,
-                          pady=c.GRID_PADDING
-                )
-                t = Label( master=cell,
-                           text="",
-                           bg=c.BACKGROUND_COLOR_CELL_EMPTY,
-                           justify=CENTER,
-                           font=c.FONT,
-                           width=5,
-                           height=3)
-                t.grid()
+    def update_grid(self, cell_grid):
+        self.create_rectangle(0, 0, c.WIDTH_GRID_PX, c.HEIGHT_GRID_PX, fill=c.BACKGROUND_COLOR_GAME)
+        self.create_line(0,0,150,150)
         
