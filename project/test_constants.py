@@ -1,5 +1,5 @@
 import unittest
-from src import constants
+import constants
 
 class TestConstants(unittest.TestCase):
 

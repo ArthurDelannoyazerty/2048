@@ -8,7 +8,13 @@ class ViewGrid(Canvas):
         self.cell_grid = grid
         width  = c.WIDTH_GRID_PX
         height = c.HEIGHT_GRID_PX
-        Canvas.__init__(self, window, width = width, height = height, bg=c.BACKGROUND_COLOR_GAME, borderwidth=1, highlightthickness=0)
+        Canvas.__init__(self, 
+                        window,
+                        width = width,
+                        height = height,
+                        bg=c.BACKGROUND_COLOR_GAME,
+                        borderwidth=1,
+                        highlightthickness=0)
         self.update_grid(grid)
         self.pack()
     
