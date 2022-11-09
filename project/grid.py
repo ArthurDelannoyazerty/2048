@@ -3,7 +3,7 @@ import random
 
 class Grid:
     
-    def __init__(self, size = 4):
+    def __init__(self, size):
         self.size = size
         self.matrix = np.zeros((size, size), dtype=int)
         self.add_random_cell()

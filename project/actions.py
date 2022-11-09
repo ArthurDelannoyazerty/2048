@@ -47,9 +47,12 @@ class Actions():
             if array[i] == 0:
                 number_zeros +=1
         
+        if number_zeros == array.size:
+            return array
+        
         array_no_zero = np.zeros(array.size - number_zeros)
         index_free_space = 0
-        for i in range(0, array.size()):
+        for i in range(0, array.size):
             if array[i] != 0:
                 array_no_zero[index_free_space] = array[i]
                 index_free_space +=1
