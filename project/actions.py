@@ -33,6 +33,7 @@ class Actions():
         for column_index in range(0, matrix_size):
             array = self.grid.get_column(column_index)
             array = self.action_array(array)
+            # self.grid.set_column(array)
             
 
         self.grid.matrix = new_matrix
@@ -74,7 +75,7 @@ class Actions():
                 new_array[index_free_space] = array_no_zero[i]
                 index_free_space +=1
         
-        if flag_jump == True:
-            new_array[index_free_space] = array_no_zero[array_no_zero.size]
+        if array_no_zero.size%2 == 1:
+            new_array[index_free_space] = array_no_zero[array_no_zero.size-1]
             
         return new_array

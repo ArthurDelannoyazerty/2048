@@ -18,6 +18,17 @@ class Grid:
             column[i] = self.matrix[i][n]
         
         return column
+
+    def set_column(self, index_column, array):
+        if index_column >= self.size or index_column < 0:
+            raise IndexError("Column index out of bounds.")
+        if array.size != self.size:
+            raise IndexError("Array has a bad format.")
+        
+        
+        for i in range(0, self.size):
+            self.matrix[i][index_column] = array[i]
+            
     
     def get_row(self, n):
         if n<0 or n>self.size :

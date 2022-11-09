@@ -161,6 +161,31 @@ class TestGrid(unittest.TestCase):
         
         self.assertTrue(test1 and test2 and test3 and test4 and test5)
 
+    def test_set_column_grid_empty_4_4(self):
+        """Test the set of a column in the grid"""
+        grid = Grid(4) 
+        
+        true_matrix = np.array([[1, 0, 0, 0], 
+                                [2, 0, 0, 0],
+                                [3, 0, 0, 0], 
+                                [4, 0, 0, 0]])
+        
+        
+        array_to_insert = np.array([1, 2, 3, 4])
+        grid.set_column(0, array_to_insert)
+        
+        test1 = np.allclose(true_matrix, grid.matrix)
+        
+        self.assertTrue(test1)
+    
+    def test_set_column_grid_bad_array_format(self):
+        """Test the error raise when we set a column with a bad array"""
+        grid = Grid(4) 
+        array_to_insert = np.array([1, 2, 3, 4, 5])
+        
+        self.assertRaises(IndexError, grid.set_column(0, array_to_insert))
+        
+
 
 if __name__ == '__main__':
     unittest.main()
