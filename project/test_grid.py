@@ -183,7 +183,7 @@ class TestGrid(unittest.TestCase):
         grid = Grid(4) 
         array_to_insert = np.array([1, 2, 3, 4, 5])
         
-        self.assertRaises(IndexError, grid.set_column(0, array_to_insert))
+        self.assertRaises(IndexError, grid.set_column, 0, array_to_insert)
         
 
 
