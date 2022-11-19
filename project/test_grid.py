@@ -9,10 +9,6 @@ class TestGrid(unittest.TestCase):
         """Test that an empty grid returns empty columns"""
         grid = Grid(4) 
         
-        grid.matrix = np.array([[0, 0, 0, 0], 
-                                [0, 0, 0, 0],
-                                [0, 0, 0, 0], 
-                                [0, 0, 0, 0]])
         
         true_array = np.array([0, 0, 0, 0])
         generated_array1 = grid.get_column(0)
@@ -83,14 +79,10 @@ class TestGrid(unittest.TestCase):
         
         self.assertTrue(test1 and test2 and test3 and test4 and test5)
     
+    
     def test_get_row_grid_empty_4_4(self): 
         """Test that an empty grid returns empty rows"""
         grid = Grid(4) 
-        
-        grid.matrix = np.array([[0, 0, 0, 0], 
-                                [0, 0, 0, 0],
-                                [0, 0, 0, 0], 
-                                [0, 0, 0, 0]])
         
         true_array = np.array([0, 0, 0, 0])
         generated_array1 = grid.get_row(0)
@@ -161,6 +153,7 @@ class TestGrid(unittest.TestCase):
         
         self.assertTrue(test1 and test2 and test3 and test4 and test5)
 
+
     def test_set_column_grid_empty_4_4(self):
         """Test the set of a column in the grid"""
         grid = Grid(4) 
@@ -180,11 +173,80 @@ class TestGrid(unittest.TestCase):
     
     def test_set_column_grid_bad_array_format(self):
         """Test the error raise when we set a column with a bad array"""
-        grid = Grid(4) 
-        array_to_insert = np.array([1, 2, 3, 4, 5])
+        grid = Grid(5) 
+        array_to_insert = np.array([1, 2, 3, 4])
         
         self.assertRaises(IndexError, grid.set_column, 0, array_to_insert)
         
+    def test_set_column_grid_bad_index_negative(self):
+        """Test the error raise when we set a column with a bad array"""
+        grid = Grid(4) 
+        array_to_insert = np.array([1, 2, 3, 4])
+        
+        self.assertRaises(IndexError, grid.set_column, -1, array_to_insert)
+        
+    def test_set_column_grid_bad_index_over(self):
+        """Test the error raise when we set a column with a bad array"""
+        grid = Grid(4) 
+        array_to_insert = np.array([1, 2, 3, 4])
+        
+        self.assertRaises(IndexError, grid.set_column, 5, array_to_insert)
+    
+    def test_set_column_grid(self):
+        """Test the error raise when we set a column with a bad array"""
+        grid = Grid(4) 
+        
+        array_to_insert = np.array([1, 2, 3, 4])
+        grid.set_column(0, array_to_insert)
+        grid.set_column(3, array_to_insert)
+        
+        true_matrix1 = np.array([[1, 0, 0, 1], 
+                                 [2, 0, 0, 2],
+                                 [3, 0, 0, 3], 
+                                 [4, 0, 0, 4]])
+        
+        test1 = np.allclose(true_matrix1, grid.matrix)
+        
+        self.assertTrue(test1)
+        
+
+    def test_set_row_grid_bad_array_format(self):
+        """Test the error raise when we set a row with a bad array"""
+        grid = Grid(5) 
+        array_to_insert = np.array([1, 2, 3, 4])
+        
+        self.assertRaises(IndexError, grid.set_row, 0, array_to_insert)
+        
+    def test_set_row_grid_bad_index_negative(self):
+        """Test the error raise when we set a row with a bad array"""
+        grid = Grid(4) 
+        array_to_insert = np.array([1, 2, 3, 4])
+        
+        self.assertRaises(IndexError, grid.set_row, -1, array_to_insert)
+        
+    def test_set_row_grid_bad_index_over(self):
+        """Test the error raise when we set a row with a bad array"""
+        grid = Grid(4) 
+        array_to_insert = np.array([1, 2, 3, 4])
+        
+        self.assertRaises(IndexError, grid.set_row, 5, array_to_insert)
+    
+    def test_set_row_grid(self):
+        """Test the error raise when we set a row with a bad array"""
+        grid = Grid(4) 
+        
+        array_to_insert = np.array([1, 2, 3, 4])
+        grid.set_row(0, array_to_insert)
+        grid.set_row(3, array_to_insert)
+        
+        true_matrix1 = np.array([[1, 2, 3, 4], 
+                                 [0, 0, 0, 0],
+                                 [0, 0, 0, 0], 
+                                 [1, 2, 3, 4]])
+        
+        test1 = np.allclose(true_matrix1, grid.matrix)
+        
+        self.assertTrue(test1)
 
 
 if __name__ == '__main__':

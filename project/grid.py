@@ -6,7 +6,6 @@ class Grid:
     def __init__(self, size):
         self.size = size
         self.matrix = np.zeros((size, size), dtype=int)
-        self.add_random_cell()
     
     
     def get_column(self, n):
@@ -30,10 +29,19 @@ class Grid:
             self.matrix[i][index_column] = array[i]
             
     
-    def get_row(self, n):
-        if n<0 or n>self.size :
+    def get_row(self, index_row):
+        if index_row<0 or index_row>self.size :
             return None
-        return self.matrix[n]
+        return self.matrix[index_row]
+    
+    
+    def set_row(self, index_row, array):
+        if index_row >= self.size or index_row < 0:
+            raise IndexError("Column index out of bounds.")
+        if array.size != self.size:
+            raise IndexError("Array has a bad format.")
+        self.matrix[index_row] = array
+    
     
     def add_random_cell(self):
         chance_of_a_two = 0.7
