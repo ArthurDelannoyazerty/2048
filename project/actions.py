@@ -28,18 +28,37 @@ class Actions():
     
     def action_up(self):
         matrix_size = self.grid.size
-        new_matrix = np.empty((matrix_size, matrix_size))
-        
         for column_index in range(0, matrix_size):
             array = self.grid.get_column(column_index)
             array = self.action_array(array)
-            # self.grid.set_column(array)
+            self.grid.set_column(column_index, array)
             
-
-        self.grid.matrix = new_matrix
             
+    def action_down(self):
+        matrix_size = self.grid.size
+        for column_index in range(0, matrix_size):
+            array = self.grid.get_column(column_index)
+            array = array[::-1]
+            array = self.action_array(array)
+            array = array[::-1]
+            self.grid.set_column(column_index, array)
     
-    
+    def action_left(self):
+        matrix_size = self.grid.size
+        for row_index in range(0, matrix_size):
+            array = self.grid.get_row(row_index)
+            array = self.action_array(array)
+            self.grid.set_row(row_index, array)
+            
+    def action_right(self):
+        matrix_size = self.grid.size
+        for row_index in range(0, matrix_size):
+            array = self.grid.get_row(row_index)
+            array = array[::-1]
+            array = self.action_array(array)
+            array = array[::-1]
+            self.grid.set_row(row_index, array)
+            
     
     def action_array(self, array):
         
@@ -75,7 +94,7 @@ class Actions():
                 new_array[index_free_space] = array_no_zero[i]
                 index_free_space +=1
         
-        if array_no_zero.size%2 == 1:
+        if not flag_jump:
             new_array[index_free_space] = array_no_zero[array_no_zero.size-1]
             
         return new_array
